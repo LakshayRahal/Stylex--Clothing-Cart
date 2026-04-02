@@ -99,7 +99,7 @@ function AuthLogin() {
       const token = await result.user.getIdToken();
 
       await axios.post(
-        "http://localhost:5000/api/auth/firebase-login",
+        `${import.meta.env.VITE_API_URL}/api/auth/firebase-login`,
         {},
         {
           headers: {
@@ -125,7 +125,7 @@ function AuthLogin() {
       const token = await result.user.getIdToken();
 
       await axios.post(
-        "http://localhost:5000/api/auth/firebase-login",
+        `${import.meta.env.VITE_API_URL}/api/auth/firebase-login`,
         {},
         {
           headers: {

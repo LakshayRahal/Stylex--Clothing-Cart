@@ -128,7 +128,7 @@ const googleAuthCallback = async (req, res) => {
     sameSite: "lax",
   });
 
-  res.redirect(process.env.CLIENT_URL || "http://localhost:5173");
+  res.redirect(process.env.CLIENT_URL );
 };
 
 /* ================= LOGOUT ================= */
@@ -180,7 +180,7 @@ const forgotPassword = async (req, res) => {
 
   console.log(
     `Reset Link: ${
-      process.env.CLIENT_URL || "http://localhost:5173"
+      process.env.CLIENT_URL 
     }/auth/reset-password/${token}`
   );
 

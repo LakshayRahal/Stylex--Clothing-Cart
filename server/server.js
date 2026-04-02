@@ -26,7 +26,7 @@ mongoose.connect('mongodb+srv://lakshayrahal2005:Lakshay2004@cluster0.reqq7.mong
 
 // app.use(
 //   cors({
-//     origin: "http://localhost:5173",
+//     origin:process.env.CLIENT_BASE_URL ,
 //     methods: ["GET", "POST", "DELETE", "PUT"],
 //     allowedHeaders: [
 //       "Content-Type",
@@ -63,10 +63,10 @@ require("dotenv").config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-/* ================= MIDDLEWARES ================= */
+
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: process.env.CLIENT_BASE_URL,
     methods: ["GET", "POST", "DELETE", "PUT"],
     allowedHeaders: [
       "Content-Type",
@@ -84,7 +84,6 @@ app.use(express.json());
 
 
 
-/* ================= ROUTES ================= */
 app.use("/api/auth", authRouter);
 
 app.use("/api/admin/products", adminProductsRouter);
@@ -99,7 +98,6 @@ app.use("/api/shop/review", shopReviewRouter);
 
 app.use("/api/common/feature", commonFeatureRouter);
 
-/* ================= SERVER ================= */
 app.listen(PORT, () => {
   console.log(` Server is now running on port ${PORT}`);
 });

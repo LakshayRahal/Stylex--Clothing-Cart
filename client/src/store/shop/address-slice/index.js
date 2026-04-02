@@ -28,7 +28,7 @@ export const addNewAddress = createAsyncThunk(
 
 
       const response = await axios.post(
-        "http://localhost:5000/api/shop/address/add",
+        `${import.meta.env.VITE_API_URL}/api/shop/address/add`,
         {
           ...formData,
           userId,
@@ -52,12 +52,12 @@ export const fetchAllAddresses = createAsyncThunk(
 
 
       const response = await axios.get(
-        `http://localhost:5000/api/shop/address/get/${userId}`
+        `${import.meta.env.VITE_API_URL}/api/shop/address/get/${userId}`
       );
 
       return response.data;
     } catch (error) {
-      console.log("❌ Fetch Error:", error.message);
+      console.log(" Fetch Error:", error.message);
       return rejectWithValue(error.message);
     }
   }
@@ -71,7 +71,7 @@ export const editaAddress = createAsyncThunk(
       const userId = getUserUID();
 
       const response = await axios.put(
-        `http://localhost:5000/api/shop/address/update/${userId}/${addressId}`,
+        `${import.meta.env.VITE_API_URL}/api/shop/address/update/${userId}/${addressId}`,
         formData
       );
 
@@ -90,7 +90,7 @@ export const deleteAddress = createAsyncThunk(
       const userId = getUserUID();
 
       const response = await axios.delete(
-        `http://localhost:5000/api/shop/address/delete/${userId}/${addressId}`
+        `${import.meta.env.VITE_API_URL}/api/shop/address/delete/${userId}/${addressId}`
       );
 
       return response.data;

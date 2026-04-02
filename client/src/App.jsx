@@ -37,7 +37,7 @@ function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  /* 🔥 Firebase Auth Listener */
+  /* Firebase Auth Listener */
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (!firebaseUser) {
@@ -48,9 +48,9 @@ function App() {
 
       const token = await firebaseUser.getIdToken();
 
-      // 🔥 Sync Firebase user with backend (role, DB user)
+      //  Sync Firebase user with backend (role, DB user)
       const res = await axios.post(
-        "http://localhost:5000/api/auth/firebase-login",
+        `${import.meta.env.VITE_API_URL}/api/auth/firebase-login`,
         {},
         {
           headers: {

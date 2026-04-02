@@ -29,7 +29,7 @@ export const createNewOrder = createAsyncThunk(
       const headers = await getAuthHeader();
 
       const response = await axios.post(
-        "http://localhost:5000/api/shop/order/create",
+        `${import.meta.env.VITE_API_URL}/api/shop/order/create`,
         orderData,
         { headers }
       );
@@ -50,7 +50,7 @@ export const capturePayment = createAsyncThunk(
       const headers = await getAuthHeader();
 
       const response = await axios.post(
-        "http://localhost:5000/api/shop/order/capture",
+        `${import.meta.env.VITE_API_URL}/api/shop/order/capture`,
         {
           paymentId,
           payerId,
@@ -61,7 +61,7 @@ export const capturePayment = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-      console.log("❌ PAYMENT ERROR:", error);
+      console.log(" PAYMENT ERROR:", error);
       return rejectWithValue(error.message);
     }
   }
@@ -75,13 +75,13 @@ export const getAllOrdersByUserId = createAsyncThunk(
       const headers = await getAuthHeader();
 
       const response = await axios.get(
-        "http://localhost:5000/api/shop/order/get",
+        `${import.meta.env.VITE_API_URL}/api/shop/order/get`,
         { headers }
       );
 
       return response.data;
     } catch (error) {
-      console.log("❌ FETCH ORDERS ERROR:", error);
+      console.log(" FETCH ORDERS ERROR:", error);
       return rejectWithValue(error.message);
     }
   }
@@ -95,7 +95,7 @@ export const getOrderDetails = createAsyncThunk(
       const headers = await getAuthHeader();
 
       const response = await axios.get(
-        `http://localhost:5000/api/shop/order/details/${id}`,
+        `${import.meta.env.VITE_API_URL}/api/shop/order/details/${id}`,
         { headers }
       );
 

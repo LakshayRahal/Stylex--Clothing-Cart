@@ -25,10 +25,10 @@
 //       payer: {
 //         payment_method: "paypal",
 //       },
-//       redirect_urls: {
-//         return_url: "http://localhost:5173/shop/paypal-return",
-//         cancel_url: "http://localhost:5173/shop/paypal-cancel",
-//       },
+//      redirect_urls: {
+      //   return_url: `${process.env.CLIENT_BASE_URL}/shop/paypal-return`,
+      //   cancel_url: `${process.env.CLIENT_BASE_URL}/shop/paypal-cancel`,
+      // },
 //       transactions: [
 //         {
 //           item_list: {
@@ -212,7 +212,7 @@ const Cart = require("../../models/Cart");
 const Product = require("../../models/Product");
 
 
-// ✅ CREATE ORDER
+//  CREATE ORDER
 const User = require("../../models/User");
 
 const getDbUser = async (req) => {
@@ -233,7 +233,7 @@ const getDbUser = async (req) => {
 
 const createOrder = async (req, res) => {
   try {
-    const dbUser = await getDbUser(req); // ✅ get user from token
+    const dbUser = await getDbUser(req); //  get user from token
     const userId = dbUser._id;
 
     const {
@@ -256,8 +256,8 @@ const createOrder = async (req, res) => {
         payment_method: "paypal",
       },
       redirect_urls: {
-        return_url: "http://localhost:5173/shop/paypal-return",
-        cancel_url: "http://localhost:5173/shop/paypal-cancel",
+        return_url: `${process.env.CLIENT_BASE_URL}/shop/paypal-return`,
+        cancel_url: `${process.env.CLIENT_BASE_URL}/shop/paypal-cancel`,
       },
       transactions: [
         {
@@ -288,7 +288,7 @@ const createOrder = async (req, res) => {
         });
       } else {
         const newlyCreatedOrder = new Order({
-          userId, // ✅ from token
+          userId, //  from token
           cartId,
           cartItems,
           addressInfo,
@@ -324,7 +324,7 @@ const createOrder = async (req, res) => {
   }
 };
 
-// ✅ CAPTURE PAYMENT
+//  CAPTURE PAYMENT
 const capturePayment = async (req, res) => {
   try {
     const { paymentId, payerId, orderId } = req.body;
@@ -375,10 +375,10 @@ const capturePayment = async (req, res) => {
   }
 };
 
-// ✅ GET ALL ORDERS (TOKEN BASED)
+//  GET ALL ORDERS (TOKEN BASED)
 const getAllOrdersByUser = async (req, res) => {
   try {
-    const dbUser = await getDbUser(req); // ✅ from token
+    const dbUser = await getDbUser(req); // from token
     const userId = dbUser._id;
 
     const orders = await Order.find({ userId });
@@ -396,7 +396,7 @@ const getAllOrdersByUser = async (req, res) => {
   }
 };
 
-// ✅ GET ORDER DETAILS
+// GET ORDER DETAILS
 const getOrderDetails = async (req, res) => {
   try {
     const { id } = req.params;

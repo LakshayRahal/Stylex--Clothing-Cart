@@ -19,7 +19,7 @@ export const addToCart = createAsyncThunk(
     const headers = await getAuthHeader();
 
     const response = await axios.post(
-      "http://localhost:5000/api/shop/cart/add",
+      `${import.meta.env.VITE_API_URL}/api/shop/cart/add`,
       { productId, quantity },
       { headers }
     );
@@ -35,7 +35,7 @@ export const fetchCartItems = createAsyncThunk(
     const headers = await getAuthHeader();
 
     const response = await axios.get(
-      "http://localhost:5000/api/shop/cart/get",
+      `${import.meta.env.VITE_API_URL}/api/shop/cart/get`,
       { headers }
     );
 
@@ -50,7 +50,7 @@ export const updateCartQuantity = createAsyncThunk(
     const headers = await getAuthHeader();
 
     const response = await axios.put(
-      "http://localhost:5000/api/shop/cart/update", 
+      `${import.meta.env.VITE_API_URL}/api/shop/cart/update`, 
       { productId, quantity }, 
       { headers }
     );
@@ -65,7 +65,7 @@ export const deleteCartItem = createAsyncThunk(
     const headers = await getAuthHeader();
 
     const response = await axios.delete(
-      `http://localhost:5000/api/shop/cart/${productId}`,
+      `${import.meta.env.VITE_API_URL}/api/shop/cart/${productId}`,
       { headers }
     );
 
@@ -128,7 +128,7 @@ export default shoppingCartSlice.reducer;
 // import { auth } from "@/firebase/firebase";
 // import { onAuthStateChanged } from "firebase/auth";
 
-// // ✅ SAFE AUTH HEADER (waits for Firebase)
+// //  SAFE AUTH HEADER (waits for Firebase)
 // const getAuthHeader = async () => {
 //   return new Promise((resolve, reject) => {
 //     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -150,26 +150,26 @@ export default shoppingCartSlice.reducer;
 //   });
 // };
 
-// // ✅ ADD TO CART
+// //  ADD TO CART
 // export const addToCart = createAsyncThunk(
 //   "cart/addToCart",
 //   async ({ productId, quantity }, { rejectWithValue }) => {
 //     try {
 //       const headers = await getAuthHeader();
 
-//       console.log("🛒 ADD TOKEN:", headers);
+//       console.log(" ADD TOKEN:", headers);
 
 //       const response = await axios.post(
-//         "http://localhost:5000/api/shop/cart/add",
+//         `${import.meta.env.VITE_API_URL}/api/shop/cart/add`,
 //         { productId, quantity },
 //         { headers }
 //       );
 
-//       console.log("🛒 ADD RESPONSE:", response.data);
+//       console.log(" ADD RESPONSE:", response.data);
 
 //       return response.data;
 //     } catch (error) {
-//       console.log("❌ ADD ERROR:", error);
+//       console.log(" ADD ERROR:", error);
 //       return rejectWithValue(error.message);
 //     }
 //   }
@@ -185,7 +185,7 @@ export default shoppingCartSlice.reducer;
 //       console.log("🛒 FETCH TOKEN:", headers);
 
 //       const response = await axios.get(
-//         "http://localhost:5000/api/shop/cart/get",
+//         `${import.meta.env.VITE_API_URL}/api/shop/cart/get`,
 //         { headers }
 //       );
 
@@ -193,13 +193,13 @@ export default shoppingCartSlice.reducer;
 
 //       return response.data;
 //     } catch (error) {
-//       console.log("❌ FETCH ERROR:", error);
+//       console.log(" FETCH ERROR:", error);
 //       return rejectWithValue(error.message);
 //     }
 //   }
 // );
 
-// // ✅ UPDATE CART
+// //  UPDATE CART
 // export const updateCartQuantity = createAsyncThunk(
 //   "cart/updateCartQuantity",
 //   async ({ productId, quantity }, { rejectWithValue }) => {
@@ -207,7 +207,7 @@ export default shoppingCartSlice.reducer;
 //       const headers = await getAuthHeader();
 
 //       const response = await axios.put(
-//         "http://localhost:5000/api/shop/cart/update-cart",
+//         `${import.meta.env.VITE_API_URL}/api/shop/cart/update-cart`,
 //         { productId, quantity },
 //         { headers }
 //       );
@@ -219,7 +219,7 @@ export default shoppingCartSlice.reducer;
 //   }
 // );
 
-// // ✅ DELETE CART ITEM
+//  DELETE CART ITEM
 // export const deleteCartItem = createAsyncThunk(
 //   "cart/deleteCartItem",
 //   async (productId, { rejectWithValue }) => {
@@ -227,7 +227,7 @@ export default shoppingCartSlice.reducer;
 //       const headers = await getAuthHeader();
 
 //       const response = await axios.delete(
-//         `http://localhost:5000/api/shop/cart/${productId}`,
+//         `${import.meta.env.VITE_API_URL}/api/shop/cart/${productId}`,
 //         { headers }
 //       );
 
@@ -238,7 +238,7 @@ export default shoppingCartSlice.reducer;
 //   }
 // );
 
-// // ✅ SLICE
+// //  SLICE
 // const shoppingCartSlice = createSlice({
 //   name: "shoppingCart",
 //   initialState: {
@@ -254,7 +254,7 @@ export default shoppingCartSlice.reducer;
 //       })
 //       .addCase(addToCart.fulfilled, (state, action) => {
 //         state.isLoading = false;
-//         console.log("🔥 ADD RESPONSE:", action.payload);
+//         console.log(" ADD RESPONSE:", action.payload);
 //         state.cartItems = action.payload?.data?.items || [];
 //       })
 
@@ -263,7 +263,7 @@ export default shoppingCartSlice.reducer;
 //         state.isLoading = true;
 //       })
 //       .addCase(fetchCartItems.fulfilled, (state, action) => {
-//         console.log("🔥 FULL PAYLOAD:", action.payload);
+//         console.log(" FULL PAYLOAD:", action.payload);
 //         state.isLoading = false;
 //         state.cartItems = action.payload?.data?.items || [];
 //       })

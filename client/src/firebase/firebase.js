@@ -8,13 +8,13 @@ import { getAuth } from "firebase/auth";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCcIU6159uX-W8flYEYsSQ2zQgkkwK3l6M",
-  authDomain: "ecommerce-a696d.firebaseapp.com",
-  projectId: "ecommerce-a696d",
-  storageBucket: "ecommerce-a696d.firebasestorage.app",
-  messagingSenderId: "804325164604",
-  appId: "1:804325164604:web:ed6fd7b70d9a62b1b12539",
-  measurementId: "G-J3JVSLHQ72"
+  apiKey:process.env.FIREBASE_API_KEY ,
+  authDomain:process.env.FIREBASE_AUTH_DOMAIN ,
+  projectId:process.env.FIREBASE_PROJECT_ID ,
+  storageBucket:process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId:process.env.FIREBASE_MESSAGING_SENDER_ID ,
+  appId:process.env.FIREBASE_APP_ID ,
+  measurementId:process.env.FIREBASE_MEASUREMENT_ID
 };
 
 

@@ -40,7 +40,7 @@ function AuthRegister() {
 
       /* 4️⃣ Sync with backend (MongoDB user) */
       await axios.post(
-        "http://localhost:5000/api/auth/firebase-login",
+        `${import.meta.env.VITE_API_URL}/api/auth/firebase-login`,
         {},
         {
           headers: {
