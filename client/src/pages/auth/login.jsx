@@ -61,13 +61,15 @@
 // }
 
 // export default AuthLogin;
+
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import {
   GoogleAuthProvider,
-  signInWithPopup,
+  // signInWithPopup,
+  signInWithRedirect,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "@/firebase/firebase";
@@ -120,7 +122,7 @@ function AuthLogin() {
   const handleGoogleLogin = async () => {
     try {
       const provider = new GoogleAuthProvider();
-      const result = await signInWithPopup(auth, provider);
+      const result = await signInWithRedirect(auth, provider);
 
       const token = await result.user.getIdToken();
 

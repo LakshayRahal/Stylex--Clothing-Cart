@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const User = require("../../models/User");
 
-/* 🔥 SAFE SECRET (ENV OR FALLBACK) */
+/*  SAFE SECRET (ENV OR FALLBACK) */
 const JWT_SECRET = "CLIENT_SECRET_KEY";
 
 /* ================= REGISTER ================= */
@@ -49,7 +49,7 @@ const loginUser = async (req, res) => {
       });
     }
 
-    // 🚨 Google-only users cannot login via form
+    //  Google-only users cannot login via form
     if (user.isGoogleUser && !user.password) {
       return res.json({
         success: false,
