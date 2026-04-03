@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import {
   GoogleAuthProvider,
-  signInWithRedirect,
+  signInWithPopup,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "@/firebase/firebase";
@@ -48,7 +48,7 @@ function AuthLogin() {
   // Google login — only triggers redirect, result handled in App.jsx
   const handleGoogleLogin = () => {
     const provider = new GoogleAuthProvider();
-    signInWithRedirect(auth, provider);
+    signInWithPopup(auth, provider);
   };
 
   return (
