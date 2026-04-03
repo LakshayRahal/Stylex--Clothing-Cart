@@ -5,7 +5,9 @@ import axios from "axios";
 import {
   GoogleAuthProvider,
   signInWithRedirect,
+  signInWithPopup,
   signInWithEmailAndPassword,
+  signInWithPopup,
 } from "firebase/auth";
 import { auth } from "@/firebase/firebase";
 import CommonForm from "@/components/common/form";
@@ -48,7 +50,7 @@ function AuthLogin() {
   // Google login — only triggers redirect, result handled in App.jsx
   const handleGoogleLogin = () => {
     const provider = new GoogleAuthProvider();
-    signInWithRedirect(auth, provider);
+    signInWithPopup(auth, provider);
   };
 
   return (
