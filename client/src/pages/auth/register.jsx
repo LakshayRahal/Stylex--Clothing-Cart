@@ -23,22 +23,22 @@ function AuthRegister() {
     e.preventDefault();
 
     try {
-      /* 1️⃣ Create Firebase user */
+      /* 1️ Create Firebase user */
       const result = await createUserWithEmailAndPassword(
         auth,
         formData.email,
         formData.password
       );
 
-      /* 2️⃣ Set display name */
+      /* 2️ Set display name */
       await updateProfile(result.user, {
         displayName: formData.userName,
       });
 
-      /* 3️⃣ Get Firebase token */
+      /* 3️ Get Firebase token */
       const token = await result.user.getIdToken();
 
-      /* 4️⃣ Sync with backend (MongoDB user) */
+      /* 4️ Sync with backend (MongoDB user) */
       await axios.post(
         `${import.meta.env.VITE_API_URL}/api/auth/firebase-login`,
         {},
